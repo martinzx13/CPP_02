@@ -4,24 +4,24 @@
 
 Fixed::Fixed() : _value(0)
 {
-    std::cout << "Standart constructor called" << std::endl;
+    // std::cout << "Standart constructor called" << std::endl;
 }
 
 Fixed::Fixed(const int _value)
 {
-    std::cout << "Integer constructor called" << std::endl;
+    // std::cout << "Integer constructor called" << std::endl;
     this->_value = _value << _fractionalBits;
 }
 
 Fixed::Fixed(const float _value)
 {
-    std::cout << "Float constructor called" << std::endl;
+    // std::cout << "Float constructor called" << std::endl;
     this->_value = roundf(_value * (1 << _fractionalBits));
 }
 
 Fixed::Fixed(const Fixed &_other)
 {
-    std::cout << "Copy constructor Called " << std::endl;
+    // std::cout << "Copy constructor Called " << std::endl;
     this->_value = _other._value;
 }
 
@@ -35,7 +35,7 @@ Fixed &Fixed::operator=(const Fixed &_other)
 // Destructor.
 Fixed::~Fixed()
 {
-    std::cout << "Default destructor called" << std::endl;
+    // std::cout << "Default destructor called" << std::endl;
 }
 
 // Conversors.
@@ -67,7 +67,15 @@ std::ostream &operator<<(std::ostream &out, const Fixed &_fixed)
     out << _fixed.toFloat();
     return out;
 }
+bool Fixed::operator==(const Fixed &_other) const
+{
+    return(this->_value == _other._value);
+}
 
+bool Fixed::operator||(const Fixed &_other) const
+{
+    return (this->_value || _other._value);
+}
 bool Fixed::operator>(const Fixed &_other) const
 {
     return (this->_value > _other._value);
@@ -91,12 +99,17 @@ bool Fixed::operator<=(const Fixed &_other) const
 // Aritmetic Operators.
 Fixed Fixed::operator+(const Fixed &_other) const
 {
-    return (this->_value + _other._value);
+    Fixed result;
+
+    result._value = this->_value + _other._value;
+    return (result);
 }
 
 Fixed Fixed::operator-(const Fixed &_other) const
 {
-    return (this->_value - _other._value);
+    Fixed result;
+    result._value = this->_value - _other._value;
+    return (result);
 }
 
 Fixed Fixed::operator*(const Fixed &_other) const

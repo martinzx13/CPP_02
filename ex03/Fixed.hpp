@@ -29,10 +29,12 @@ public:
     static const Fixed &max(const Fixed &_fixPoint1, const Fixed &_fixPoint2);
 
     // Operators.
+    bool operator==(const Fixed &_other) const;
     bool operator>(const Fixed &_fixed1) const;
     bool operator>=(const Fixed &_fixed1) const;
     bool operator<(const Fixed &_fixed1) const;
     bool operator<=(const Fixed &_other) const;
+    bool operator||(const Fixed &_other) const;
 
     //Aritmetic Operators.
     Fixed operator+(const Fixed &_other) const;
